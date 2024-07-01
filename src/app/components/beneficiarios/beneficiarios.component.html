@@ -1,0 +1,37 @@
+<div class="container">
+  <h2>Beneficiarios</h2>
+  <div class="form-group d-flex">
+    <label for="centroId" class="me-2">ID del Centro</label>
+    <input type="number" class="form-control me-2" id="centroId" [(ngModel)]="centroId" (change)="onCentroIdChange()">
+    <label for="intermediarioId" class="me-2">ID del Intermediario</label>
+    <input type="number" class="form-control me-2" id="intermediarioId" [(ngModel)]="intermediarioId" (change)="onCentroIdChange()">
+    <button type="button" class="btn btn-primary" (click)="loadBeneficiarios()">Buscar</button>
+  </div>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger', 'alert-warning': messageType === 'warning'}">
+    {{ message }}
+  </div>
+  <table *ngIf="beneficiarios.length > 0" class="table mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo de Sangre</th>
+        <th>Persona ID</th>
+        <th>Donadores IDs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let beneficiario of beneficiarios">
+        <td>{{ beneficiario.id }}</td>
+        <td>{{ beneficiario.TipoDeSangre }}</td>
+        <td>{{ beneficiario.PersonaId }}</td>
+        <td>{{ beneficiario.DonadorIds.join(', ') }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-beneficiario-form 
+    [centroId]="centroId" 
+    [intermediarioId]="intermediarioId" 
+    [disabled]="formDisabled" 
+    (refreshList)="refreshBeneficiariosList()">
+  </app-beneficiario-form>
+</div>

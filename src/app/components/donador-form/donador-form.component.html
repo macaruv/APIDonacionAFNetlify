@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>Gestionar Donador</h2>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger', 'alert-warning': messageType === 'warning'}">
+    {{ message }}
+  </div>
+  <div class="form-group">
+    <label for="id">ID del Donador</label>
+    <input type="number" class="form-control" id="id" [(ngModel)]="donador.id">
+    <button class="btn btn-primary mt-2" (click)="loadDonador()">Buscar</button>
+  </div>
+  <div class="form-group">
+    <label for="tipoDeSangre">Tipo de Sangre</label>
+    <input type="text" class="form-control" id="tipoDeSangre" [(ngModel)]="donador.TipoDeSangre" [disabled]="disabled">
+  </div>
+  <div class="form-group">
+    <label for="alergias">Alergias (separadas por coma)</label>
+    <input type="text" class="form-control" id="alergias" [(ngModel)]="alergiasString" [disabled]="disabled">
+  </div>
+  <div class="form-group">
+    <label for="enfermedades">Enfermedades (separadas por coma)</label>
+    <input type="text" class="form-control" id="enfermedades" [(ngModel)]="enfermedadesString" [disabled]="disabled">
+  </div>
+  <div class="form-group">
+    <label for="ultimaVacuna">Última Vacuna</label>
+    <input type="text" class="form-control" id="ultimaVacuna" [(ngModel)]="donador.UltimaVacuna" [disabled]="disabled">
+  </div>
+  <div class="form-group">
+    <label for="personaId">ID de la Persona</label>
+    <select id="personaId" class="form-control" [(ngModel)]="donador.PersonaId" name="personaId" [disabled]="disabled">
+      <option *ngFor="let persona of personas" [value]="persona.id">{{ persona.id }} - {{ persona.Nombre }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="beneficiarioIds">Beneficiarios - PersonaIDs</label>
+    <div *ngFor="let beneficiario of beneficiarios">
+      <input type="checkbox" [value]="beneficiario.id" (change)="onBeneficiarioChange(beneficiario.id, $event)" [disabled]="disabled"> {{ beneficiario.id }} - {{ beneficiario.Nombre }}
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="onSubmit()" [disabled]="disabled">{{ donador.id ? 'Actualizar' : 'Guardar' }}</button>
+  <button class="btn btn-danger" (click)="deleteDonador()" [disabled]="disabled">Eliminar</button>
+  <button class="btn btn-secondary" (click)="resetForm()">Limpiar</button>
+</div>

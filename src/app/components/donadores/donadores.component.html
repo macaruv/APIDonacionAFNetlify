@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Donadores</h2>
+  <div class="form-group d-flex">
+    <label for="centroId" class="me-2">ID del Centro</label>
+    <input type="number" class="form-control me-2" id="centroId" [(ngModel)]="centroId" (change)="onCentroIdChange()">
+    <label for="intermediarioId" class="me-2">ID del Intermediario</label>
+    <input type="number" class="form-control me-2" id="intermediarioId" [(ngModel)]="intermediarioId" (change)="onCentroIdChange()">
+    <button type="button" class="btn btn-primary" (click)="loadDonadores()">Buscar</button>
+  </div>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger', 'alert-warning': messageType === 'warning'}">
+    {{ message }}
+  </div>
+  <table class="table mt-3" *ngIf="donadores.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tipo de Sangre</th>
+        <th>Alergias</th>
+        <th>Enfermedades</th>
+        <th>Última Vacuna</th>
+        <th>Beneficiarios</th>
+        <th>Persona ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let donador of donadores">
+        <td>{{ donador.id }}</td>
+        <td>{{ donador.TipoDeSangre }}</td>
+        <td>{{ donador.Alergias.join(', ') }}</td>
+        <td>{{ donador.Enfermedades.join(', ') }}</td>
+        <td>{{ donador.UltimaVacuna }}</td>
+        <td>{{ donador.BeneficiarioIds.join(', ') }}</td>
+        <td>{{ donador.PersonaId }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-donador-form [centroId]="centroId" [intermediarioId]="intermediarioId" [disabled]="formDisabled" (refreshList)="refreshDonadoresList()"></app-donador-form>
+</div>

@@ -1,0 +1,73 @@
+<div class="container">
+    <h2>Personas</h2>
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-12">
+            <h3>Donadores</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Edad</th>
+                  <th>Peso</th>
+                  <th>Género</th>
+                  <th>Rol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let persona of donadores">
+                  <td>{{ persona.id }}</td>
+                  <td>{{ persona.Nombre }}</td>
+                  <td>{{ persona.Telefono }}</td>
+                  <td>{{ persona.Correo }}</td>
+                  <td>{{ persona.Edad }}</td>
+                  <td>{{ persona.Peso }}</td>
+                  <td>{{ persona.Genero }}</td>
+                  <td>{{ persona.Rol }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-12 mt-4">
+            <h3>Beneficiarios</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre</th>
+                  <th>Teléfono</th>
+                  <th>Correo</th>
+                  <th>Edad</th>
+                  <th>Peso</th>
+                  <th>Género</th>
+                  <th>Rol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let persona of beneficiarios">
+                  <td>{{ persona.id }}</td>
+                  <td>{{ persona.Nombre }}</td>
+                  <td>{{ persona.Telefono }}</td>
+                  <td>{{ persona.Correo }}</td>
+                  <td>{{ persona.Edad }}</td>
+                  <td>{{ persona.Peso }}</td>
+                  <td>{{ persona.Genero }}</td>
+                  <td>{{ persona.Rol }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <app-persona-form (refreshList)="loadPersonas()"></app-persona-form>
+      </div>
+    </div>
+    <!-- Formulario de Envío de Correo -->
+    <app-email-form></app-email-form>
+  </div>
+  

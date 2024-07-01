@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Gestionar Intermediario</h2>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger', 'alert-warning': messageType === 'warning'}">
+    {{ message }}
+  </div>
+  <div class="form-group">
+    <label for="id">ID del Intermediario</label>
+    <input type="number" class="form-control" id="id" [(ngModel)]="intermediario.id" [disabled]="disabled">
+    <button class="btn btn-primary mt-2" (click)="loadIntermediario()" [disabled]="disabled">Buscar</button>
+  </div>
+  <div class="form-group">
+    <label for="Nombre">Nombre</label>
+    <input type="text" class="form-control" id="Nombre" [(ngModel)]="intermediario.Nombre" [disabled]="disabled">
+  </div>
+  <div class="form-group">
+    <label for="Contacto">Contacto</label>
+    <input type="text" class="form-control" id="Contacto" [(ngModel)]="intermediario.Contacto" [disabled]="disabled">
+  </div>
+  <div class="form-group">
+    <label for="url">URL</label>
+    <input type="text" class="form-control" id="url" [(ngModel)]="intermediario.url" [disabled]="disabled">
+  </div>
+  <button class="btn btn-primary" (click)="onSubmit()" [disabled]="disabled">{{ intermediario.id ? 'Actualizar' : 'Guardar' }}</button>
+  <button class="btn btn-danger" (click)="deleteIntermediario()" [disabled]="disabled">Eliminar</button>
+  <button class="btn btn-secondary" (click)="resetForm()">Limpiar</button>
+</div>

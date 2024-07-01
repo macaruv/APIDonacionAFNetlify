@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Intermediarios</h2>
+  <div class="form-group d-flex">
+    <label for="centroId" class="me-2">ID del Centro</label>
+    <input type="number" class="form-control me-2" id="centroId" [(ngModel)]="centroId" (change)="onCentroIdChange()">
+    <button type="button" class="btn btn-primary" (click)="loadIntermediarios()">Buscar</button>
+  </div>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger', 'alert-warning': messageType === 'warning'}">
+    {{ message }}
+  </div>
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Contacto</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="intermediarios.length === 0">
+        <td colspan="4">No hay intermediarios registrados.</td>
+      </tr>
+      <tr *ngFor="let intermediario of intermediarios">
+        <td>{{ intermediario.id }}</td>
+        <td>{{ intermediario.Nombre }}</td>
+        <td>{{ intermediario.Contacto }}</td>
+        <td>{{ intermediario.url }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <app-intermediarios-form [centroId]="centroId" (refreshList)="loadIntermediarios()" [disabled]="!centroValid"></app-intermediarios-form>
+</div>

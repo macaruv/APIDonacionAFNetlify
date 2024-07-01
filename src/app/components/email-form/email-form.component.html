@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>Enviar Correo</h2>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger'}">
+    {{ message }}
+  </div>
+  <form>
+    <div class="form-group">
+      <label for="to">Para:</label>
+      <input type="email" id="to" [(ngModel)]="to" name="to" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="subject">Asunto:</label>
+      <input type="text" id="subject" [(ngModel)]="subject" name="subject" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="text">Cuerpo del correo:</label>
+      <textarea id="text" [(ngModel)]="text" name="text" class="form-control" required></textarea>
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" id="attachReport" [(ngModel)]="attachReport" name="attachReport" class="form-check-input">
+      <label for="attachReport" class="form-check-label">Adjuntar reporte PDF</label>
+    </div>
+    <button type="button" class="btn btn-primary" (click)="sendEmail()">Enviar</button>
+  </form>
+</div>

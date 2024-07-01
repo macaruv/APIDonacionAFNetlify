@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Centros de Donación</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Contacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let centro of centros">
+            <td>{{ centro.id }}</td>
+            <td>{{ centro.Nombre }}</td>
+            <td>{{ centro.Direccion }}</td>
+            <td>{{ centro.Contacto }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <app-centro-de-donacion-form (refreshList)="loadCentros()"></app-centro-de-donacion-form>
+    </div>
+  </div>
+</div>

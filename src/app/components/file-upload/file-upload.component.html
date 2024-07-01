@@ -1,0 +1,23 @@
+<div class="container">
+  <br/>
+  <h4>Subir Archivos</h4>
+  <div *ngIf="message" class="alert mt-2" [ngClass]="{'alert-success': messageType === 'success', 'alert-danger': messageType === 'danger', 'alert-warning': messageType === 'warning'}">
+    {{ message }}
+  </div>
+  <div class="form-group">
+    <label for="file">Seleccione un archivo</label>
+    <input type="file" class="form-control" id="file" (change)="onFileSelected($event)">
+  </div>
+  <button class="btn btn-primary"  (click)="onUpload()">Subir</button>
+  <br/>
+  <h4>Archivos Subidos</h4>
+  <ul>
+    <li *ngFor="let file of uploadedFiles">
+      {{ file }}
+      <div>
+        <button class="btn btn-primary btn-sm" (click)="downloadFile(file)">Descargar</button>
+        <button class="btn btn-danger btn-sm" (click)="deleteFile(file)">Eliminar</button>
+      </div>
+    </li>
+  </ul>
+</div>
